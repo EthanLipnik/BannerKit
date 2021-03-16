@@ -109,7 +109,7 @@ public class BKView: UIView {
             imageView.image = nil
         }
         
-        topConstraint.constant = 30
+        topConstraint.constant = 60
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.5, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: { [weak self] in
             guard let self = self else { return }
