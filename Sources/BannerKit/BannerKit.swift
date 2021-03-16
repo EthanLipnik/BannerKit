@@ -9,6 +9,7 @@ public class BannerKit {
     
     private init() {
         bannerView = BKView()
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
         
         UIApplication.shared.keyWindow?.addSubview(bannerView)
         

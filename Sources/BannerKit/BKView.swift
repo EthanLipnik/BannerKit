@@ -78,8 +78,13 @@ public class BKView: UIView {
         
         addSubview(stackView)
         
-        stackView.frame = bounds
-        stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints([
+            NSLayoutConstraint(item: stackView, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: stackView, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 10),
+            NSLayoutConstraint(item: stackView, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -10)
+        ])
         
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(titleLabel)
