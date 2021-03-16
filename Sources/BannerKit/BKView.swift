@@ -38,6 +38,9 @@ public class BKView: UIView {
         
         label.textColor = UIColor.white
         
+        label.allowsDefaultTighteningForTruncation = true
+        label.minimumScaleFactor = 0.7
+        
         return label
     }()
     
@@ -82,9 +85,9 @@ public class BKView: UIView {
         stackView.addArrangedSubview(titleLabel)
     }
     
-    public func show(withTitle title: String, icon: String? = nil, duration: Double = 3, tintColor: UIColor = UIColor.link) {
+    public func show(withTitle title: String, icon: String? = nil, duration: Double = 3, tintColor: UIColor = UIColor.link, topConstraint: NSLayoutConstraint) {
         
-        hide()
+        hide(topConstraint: topConstraint)
         
         titleLabel.text = title
         backgroundColor = tintColor
@@ -100,26 +103,30 @@ public class BKView: UIView {
             imageView.image = nil
         }
         
+        topConstraint.constant = (self.superview?.safeAreaInsets ?? self.safeAreaInsets).top + 10
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.5, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: { [weak self] in
             guard let self = self else { return }
             
-            self.frame.origin.y = self.safeAreaInsets.top + 10
+            self.superview?.layoutIfNeeded()
             self.center = self.superview?.center ?? .zero
             self.alpha = 1
             self.transform = .identity
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
-            self?.hide()
+            self?.hide(topConstraint: topConstraint)
         }
     }
     
-    public func hide() {
+    public func hide(topConstraint: NSLayoutConstraint) {
+        
+        topConstraint.constant = -50
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.5, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: { [weak self] in
             guard let self = self else { return }
             
-            self.frame.origin.y = -50
+            self.superview?.layoutIfNeeded()
             self.alpha = 0
             self.transform = .init(scaleX: 0.5, y: 0.5)
         })
