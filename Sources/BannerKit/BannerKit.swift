@@ -2,7 +2,7 @@
 import UIKit
 
 public class BannerKit {
-    static let shared = BannerKit()
+    public static let shared = BannerKit()
     var bannerView: BKView
     
     private init() {
