@@ -110,6 +110,8 @@ public class BKView: UIView {
         
         topConstraint.constant = (self.superview?.safeAreaInsets ?? self.safeAreaInsets).top + 10
         
+        print(topConstraint.constant)
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.5, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: { [weak self] in
             guard let self = self else { return }
             

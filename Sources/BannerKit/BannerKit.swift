@@ -20,6 +20,7 @@ public class BannerKit {
             
             NSLayoutConstraint(item: bannerView, attribute: .leadingMargin, relatedBy: .greaterThanOrEqual, toItem: UIApplication.shared.keyWindow, attribute: .leadingMargin, multiplier: 1, constant: 10),
             NSLayoutConstraint(item: bannerView, attribute: .trailingMargin, relatedBy: .lessThanOrEqual, toItem: UIApplication.shared.keyWindow, attribute: .trailingMargin, multiplier: 1, constant: 10),
+            NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: UIApplication.shared.keyWindow, attribute: .centerX, multiplier: 1, constant: 0),
             
             NSLayoutConstraint(item: bannerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50),
             NSLayoutConstraint(item: bannerView, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 75)
